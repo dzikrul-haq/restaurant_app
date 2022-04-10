@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant_app/restaurant.dart';
 import 'package:restaurant_app/widgets/custom_scaffold.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -30,37 +31,27 @@ class RestaurantDetailPage extends StatelessWidget {
                 children: [
                   Text(
                     restaurant.name,
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: GoogleFonts.oxygen(
+                        color: Color(0xFFE07265),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28
+                    ),
                   ),
-                  Divider(color: Colors.grey),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.location_pin, color: Colors.red,),
+                      Text(restaurant.city),
+                    ],
+                  ),
                   Text(
                     restaurant.description,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Divider(color: Colors.grey),
-                  Text(
-                    'Date: ${restaurant.city}',
-                    style: Theme.of(context).textTheme.caption,
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    'Author: ${restaurant.city}',
-                    style: Theme.of(context).textTheme.caption,
-                  ),
                   Divider(color: Colors.grey),
-                  Text(
-                    restaurant.rating.toString(),
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                  SizedBox(height: 10),
-                  ElevatedButton(
-                    child: Text('Read more'),
-                    onPressed: () {
-                      // Navigator.pushNamed(context, RestaurantWebView.routeName,
-                      //     arguments: restaurant.menus.
-                      // );
-                    },
-                  ),
+
+
                 ],
               ),
             ),
