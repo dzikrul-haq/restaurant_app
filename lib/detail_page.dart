@@ -1,16 +1,33 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant_app/restaurant.dart';
 import 'package:restaurant_app/widgets/custom_scaffold.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class RestaurantDetailPage extends StatelessWidget {
+/// Gunakan [StatefulWidget] untuk menggunakan data yang dinamis
+class RestaurantDetailPage extends StatefulWidget {
   static const routeName = '/restaurants_detail';
+  final Restaurant data;
 
-  final Restaurant restaurant;
+  const RestaurantDetailPage({Key? key, required this.data}) : super(key: key);
 
-  const RestaurantDetailPage({required this.restaurant});
+  @override
+  State<StatefulWidget> createState() => _RestaurantDetailPageState();
+}
+
+/// See more on [https://stackoverflow.com/a/45588301]
+class _RestaurantDetailPageState extends State<RestaurantDetailPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _controller;
+  late final Restaurant restaurant;
+
+  @override
+  void initState() {
+    restaurant = widget.data;
+    super.initState();
+
+    _controller = TabController(length: 2, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +42,24 @@ class RestaurantDetailPage extends StatelessWidget {
                 tag: restaurant.pictureId,
                 child: Image.network(restaurant.pictureId)),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     restaurant.name,
                     style: GoogleFonts.oxygen(
-                        color: Color(0xFFE07265),
+                        color: const Color(0xFFE07265),
                         fontWeight: FontWeight.bold,
-                        fontSize: 28
-                    ),
+                        fontSize: 28),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.location_pin, color: Colors.red,),
+                      const Icon(
+                        Icons.location_pin,
+                        color: Colors.red,
+                      ),
                       Text(restaurant.city),
                     ],
                   ),
@@ -48,10 +67,62 @@ class RestaurantDetailPage extends StatelessWidget {
                     restaurant.description,
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
-                  SizedBox(height: 10),
-                  Divider(color: Colors.grey),
+                  const SizedBox(height: 10),
+                  const Divider(color: Colors.grey),
+                ],
+              ),
+            ),
 
+            /// Container for TabBar
+            Container(
+              decoration:
 
+                  /// Gunakan [Theme.of(context).primaryColor] untuk menggunakan Tema
+                  BoxDecoration(color: Theme.of(context).primaryColor),
+              child: TabBar(
+                controller: _controller,
+                tabs: const [
+                  Tab(
+                    icon: Icon(Icons.fastfood),
+                    text: 'Foods',
+                  ),
+                  Tab(
+                    icon: Icon(Icons.local_drink),
+                    text: 'Drinks',
+                  ),
+                ],
+              ),
+            ),
+
+            /// Container for Tab Bar View
+            SizedBox(
+              height: 300.0,
+              child: TabBarView(
+                controller: _controller,
+                children: <Widget>[
+                  Card(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: restaurant.menus.foods.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: const Icon(Icons.check),
+                          title: Text(restaurant.menus.foods[index].name),
+                        );
+                      },
+                    ),
+                  ),
+                  Card(
+                    child: ListView.builder(
+                      itemCount: restaurant.menus.drinks.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: const Icon(Icons.check),
+                          title: Text(restaurant.menus.drinks[index].name),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -62,6 +133,7 @@ class RestaurantDetailPage extends StatelessWidget {
   }
 }
 
+/// Redundant Class, mohon untuk dihapus
 class RestaurantWebView extends StatelessWidget {
   static const routeName = '/restaurant_web';
 

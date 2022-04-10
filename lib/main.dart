@@ -17,14 +17,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Restaurants',
       theme: ThemeData(
+        primaryColor: primaryColor,
         colorScheme: Theme.of(context).colorScheme.copyWith(
           primary: primaryColor,
-          onPrimary: Colors.black,
+          onPrimary: onPrimaryColor,
           secondary: secondaryColor,
         ),
-        scaffoldBackgroundColor: Colors.white,
+        textTheme: myTextTheme,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-
         appBarTheme: const AppBarTheme(elevation: 0),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       routes: {
         RestaurantListPage.routeName: (context) => RestaurantListPage(),
         RestaurantDetailPage.routeName: (context) => RestaurantDetailPage(
-          restaurant: ModalRoute.of(context)?.settings.arguments as Restaurant,
+          data: ModalRoute.of(context)?.settings.arguments as Restaurant,
         ),
         RestaurantWebView.routeName: (context) => RestaurantWebView(
           url: ModalRoute.of(context)?.settings.arguments as String,

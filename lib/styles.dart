@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-final Color primaryColor = Color(0xFFFFFFFF);
-final Color secondaryColor = Color(0xEEE8744);
-final Color secondaryLightColor = Color(0xFFE07265);
+/// Gunakan const untuk data yang tidak berubah
+const Color primaryColor = Color(0xFFFFFFFF);
+const Color onPrimaryColor = Colors.black;
+const Color secondaryColor = Color(0xFEEE8744);
+const Color secondaryLightColor = Color(0xFFE07265);
 
+/// Pasangkan TextTheme ke [main.dart]
 final TextTheme myTextTheme = TextTheme(
   headline1: GoogleFonts.oxygen(
       fontSize: 95,
