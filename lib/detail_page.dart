@@ -49,16 +49,16 @@ class RestaurantDetailPage extends StatelessWidget {
                   ),
                   Divider(color: Colors.grey),
                   Text(
-                    restaurant.rating,
+                    restaurant.rating.toString(),
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
                     child: Text('Read more'),
                     onPressed: () {
-                      Navigator.pushNamed(context, RestaurantWebView.routeName,
-                          arguments: restaurant.menu
-                      );
+                      // Navigator.pushNamed(context, RestaurantWebView.routeName,
+                      //     arguments: restaurant.menus.
+                      // );
                     },
                   ),
                 ],
