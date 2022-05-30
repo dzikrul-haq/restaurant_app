@@ -27,8 +27,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  google_fonts: ^2.1.0
-  webview_flutter: ^2.0.4
   flutter:
     sdk: flutter
 
@@ -37,6 +35,18 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   http: ^0.13.4
+  webview_flutter: ^2.0.4
+  google_fonts: ^2.1.0
+  flutter_svg: ^0.22.0
+  path_provider: ^2.0.9
+  provider: ^5.0.0
+  shared_preferences: ^2.0.5
+  android_alarm_manager_plus: ^2.0.5
+  rxdart: ^0.26.0
+  flutter_local_notifications: ^9.4.1
+  intl: ^0.17.0
+  sqflite: ^2.0.0+3
+  fluttertoast: ^8.0.8
 
 dev_dependencies:
   flutter_test:

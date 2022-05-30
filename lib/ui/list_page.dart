@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:restaurant_app/restaurant.dart';
+import 'package:restaurant_app/data/model/restaurant.dart';
 
-import 'detail_page.dart';
+import 'ui/detail_page.dart';
 
-/// Display List of Restaurant
+
 class RestaurantListPage extends StatelessWidget {
   static const routeName = '/restaurant_list';
 
-  /// See more on [https://medium.flutterdevs.com/keys-in-flutter-104fc01db48f]
   const RestaurantListPage({Key? key}) : super(key: key);
 
-  /// Fungsi untuk mendapatkan daftar restoran secara asynchronous
+
   Future<List<Restaurant>> fetchRestaurant(String url) async {
     // gunakan [await] untuk mengambil data secara terpisah
     // await akan mengembalikan data kembali ke Future setelah tugas dikerjakan.

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/restaurant.dart';
-import 'package:restaurant_app/styles.dart';
-import 'detail_page.dart';
-import 'list_page.dart';
+import 'package:restaurant_app/commons/theme.dart';
+import 'package:restaurant_app/ui/detail_page.dart';
+import 'package:restaurant_app/data/model/restaurant.dart';
+import 'package:restaurant_app/ui/list_page.dart';
 
-/// The [main] function is the first method running in flutter.
 void main() {
   runApp(const MyApp());
 }
@@ -41,20 +40,11 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: RestaurantListPage.routeName,
       routes: {
-        RestaurantListPage.routeName: (context) => RestaurantListPage(),
+        RestaurantListPage.routeName: (context) => const RestaurantListPage(),
         RestaurantDetailPage.routeName: (context) => RestaurantDetailPage(
           data: ModalRoute.of(context)?.settings.arguments as Restaurant,
-        ),
-        RestaurantWebView.routeName: (context) => RestaurantWebView(
-          url: ModalRoute.of(context)?.settings.arguments as String,
         ),
       },
     );
   }
 }
-
-
-
-
-
-

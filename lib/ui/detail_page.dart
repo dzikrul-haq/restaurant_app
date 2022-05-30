@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:restaurant_app/restaurant.dart';
-import 'package:restaurant_app/widgets/custom_scaffold.dart';
+import 'package:restaurant_app/data/model/restaurant.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-/// Gunakan [StatefulWidget] untuk menggunakan data yang dinamis
+
 class RestaurantDetailPage extends StatefulWidget {
   static const routeName = '/restaurants_detail';
   final Restaurant data;
@@ -15,7 +14,7 @@ class RestaurantDetailPage extends StatefulWidget {
   State<StatefulWidget> createState() => _RestaurantDetailPageState();
 }
 
-/// See more on [https://stackoverflow.com/a/45588301]
+
 class _RestaurantDetailPageState extends State<RestaurantDetailPage>
     with SingleTickerProviderStateMixin {
   late TabController _controller;
@@ -73,11 +72,9 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage>
               ),
             ),
 
-            /// Container for TabBar
+
             Container(
               decoration:
-
-                  /// Gunakan [Theme.of(context).primaryColor] untuk menggunakan Tema
                   BoxDecoration(color: Theme.of(context).primaryColor),
               child: TabBar(
                 controller: _controller,
@@ -94,7 +91,6 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage>
               ),
             ),
 
-            /// Container for Tab Bar View
             SizedBox(
               height: 300.0,
               child: TabBarView(
@@ -133,20 +129,3 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage>
   }
 }
 
-/// Redundant Class, mohon untuk dihapus
-class RestaurantWebView extends StatelessWidget {
-  static const routeName = '/restaurant_web';
-
-  final String url;
-
-  const RestaurantWebView({required this.url});
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomScaffold(
-      body: WebView(
-        initialUrl: url,
-      ),
-    );
-  }
-}
