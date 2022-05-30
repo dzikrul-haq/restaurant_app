@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant_app/common.dart';
 import 'package:restaurant_app/commons/theme.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
