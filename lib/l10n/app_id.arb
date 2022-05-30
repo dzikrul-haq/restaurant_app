@@ -1,0 +1,44 @@
+{
+    "titleApp": "Restaurant",
+    "@titleApp": {
+        "description" : "Deskripsi mengenai variabel titleApp"
+    },
+    "title" : "RESTAURANT YOI",
+    "@title" : {
+        "description" : "App Name"
+    },
+    "loading": "Loading...",
+    "error": "Sepertinya ada masalah..",
+    "back_to_list" : "kembali ke daftar",
+    "listPage_recommendation" : "Daftar rekomendasi restoran untuk Anda!",
+    "listPage_home" : "Beranda",
+    "listPage_search_button" : "Masuk ke pencarian",
+    "listPage_Item_favorite_true" : "Jadikan favorit!",
+    "listPage_Item_favorite_false" : "Jadikan tidak favorit",
+    "search_something" : "Cari nama restoran",
+    "search_undo" : "Batalkan Pencarian",
+    "detailPage_description":"Deskripsi",
+    "detailPage_menu":"Menu",
+    "item_or_detail_rating" : "Rating {ratingPoint}",
+    "@item_or_detail_rating" : {
+        "description": "",
+        "placeholders" : {
+            "ratingPoint" : {
+                "type" : "String"
+            }
+        }
+    },
+    "searchPage_title" : "Pencarian",
+    "settingsPage_title" : "Pengaturan",
+    "settingsPage_dark" : "Tema Gelap",
+    "settingsPage_scheduling" : "Jadwalkan Pengingat",
+    "settingsPage_scheduling_time" : "Setiap pukul 11.00 AM",
+    "settingsPage_reminder_activated" : "Pengingat diaktifkan setiap 11.00 AM",
+    "settingsPage_reminder_deactivated" : "Pengingat dibatalkan!",
+    "settingsPage_language" : "Bahasa",
+    "settingsPage_ChangeLanguage": "Pengaturan ubah bahasa",
+    "settingsPage_localeItem1" : "Bahasa Indonesia",
+    "settingsPage_localeItem2" : "Bahasa Inggris",
+    "settingsPage_darkThemeToggle" : "nyalakan / matikan mode gelap",
+    "settingsPage_reminderToggle" : "nyalakan / matikan mode pengingat"
+}
