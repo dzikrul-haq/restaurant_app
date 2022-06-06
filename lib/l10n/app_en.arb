@@ -1,0 +1,44 @@
+{
+    "titleApp": "Restaurant",
+    "@titleApp": {
+        "description" : "Description about titleApp variable"
+    },
+    "title" : "RESTAURANT YOI",
+    "@title" : {
+        "description" : "App Name"
+    },
+    "loading": "Loading...",
+    "error": "Something went wrong!!",
+    "back_to_list" : "back to list",
+    "listPage_recommendation" : "Recommendation restaurant for you!",
+    "listPage_home" : "Home",
+    "listPage_search_button" : "Go to search",
+    "listPage_Item_favorite_true" : "Favorite!",
+    "listPage_Item_favorite_false" : "Not Favorite this",
+    "search_something" : "Search name",
+    "search_undo" : "Undo Search",
+    "detailPage_description":"Description",
+    "detailPage_menu":"Menu",
+    "item_or_detail_rating" : "Rating {ratingPoint}",
+    "@item_or_detail_rating" : {
+        "description": "",
+        "placeholders" : {
+            "ratingPoint" : {
+                "type" : "String"
+            }
+        }
+    },
+    "searchPage_title" : "Search",
+    "settingsPage_title" : "Settings",
+    "settingsPage_dark" : "Dark Theme",
+    "settingsPage_scheduling" : "Scheduling Reminder",
+    "settingsPage_scheduling_time" : "Every 11.00 AM",
+    "settingsPage_reminder_activated" : "Reminder Activated every 11.00 AM",
+    "settingsPage_reminder_deactivated" : "Reminder Canceled!",
+    "settingsPage_language" : "Language",
+    "settingsPage_ChangeLanguage": "Change Language Setting",
+    "settingsPage_localeItem1" : "Indonesian",
+    "settingsPage_localeItem2" : "English",
+    "settingsPage_darkThemeToggle" : "on / off Dark Theme",
+    "settingsPage_reminderToggle" : "on / off Reminder"
+}

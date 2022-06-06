@@ -7,6 +7,8 @@ const Color secondaryColor = Color(0xFEEE8744);
 const Color secondaryLightColor = Color(0xFFE07265);
 const Color primaryTextColor = Color(0xFF3e6ed0);
 const Color secondaryTextColor = Color(0xff000000);
+const Color grey = Color(0xFFBDBDBD);
+const Color darkGrey = Color(0xFF4B4B4B);
 
 final TextTheme myTextTheme = TextTheme(
   headline1: GoogleFonts.oxygen(
@@ -35,15 +37,33 @@ final TextTheme myTextTheme = TextTheme(
       fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
 );
 
+ColorScheme something = const ColorScheme(
+  brightness: Brightness.light,
+  primary: primaryColor,
+  onPrimary: onPrimaryColor,
+  secondary: secondaryColor,
+  onSecondary: grey,
+  error: Colors.red,
+  onError: Colors.white,
+  background: Colors.black,
+  onBackground: Colors.white,
+  surface: Colors.white,
+  onSurface: Colors.white,
+);
+
 ThemeData lightTheme = ThemeData(
   primaryColor: primaryColor,
   scaffoldBackgroundColor: Colors.white,
   visualDensity: VisualDensity.adaptivePlatformDensity,
+  colorScheme: something.copyWith(secondary: secondaryLightColor),
   textTheme: myTextTheme,
   appBarTheme: AppBarTheme(
     elevation: 0,
     toolbarTextStyle: myTextTheme.apply(bodyColor: primaryTextColor).bodyText2,
     titleTextStyle: myTextTheme.apply(bodyColor: primaryTextColor).headline6,
   ),
-  bottomNavigationBarTheme: const BottomNavigationBarThemeData()
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    selectedItemColor: secondaryColor,
+    unselectedItemColor: Colors.black54,
+  ),
 );

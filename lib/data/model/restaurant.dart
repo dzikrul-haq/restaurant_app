@@ -20,6 +20,8 @@ class RestaurantResult {
             json["restaurants"].map((x) => Restaurant.fromJson(x))),
       );
 
+  /// Kita perlu menambahkan fungsi toJson() untuk melakukan
+  /// perubahan data dari model untuk ditampilkan menjadi JSON.
   Map<String, dynamic> toJson() => {
     "error": error,
     "message": message,
@@ -73,6 +75,14 @@ class Restaurant {
     rating: json["rating"].toDouble(),
   );
 
+  /// Kita perlu menambahkan fungsi toJson() untuk melakukan
+  /// perubahan data dari model untuk ditampilkan menjadi JSON.
+  ///
+  /// Mengapa demikian? Karena untuk mengirimkan data dari notifikasi ke halaman
+  /// tertentu pada parameter payload haruslah dalam bentuk String.
+  /// Sehingga, kita perlu mengembalikan data terlebih dahulu dalam bentuk Json
+  /// agar bisa mengirimkan data yang bersumber dari API kedalam parameter
+  /// payload.
   Map<String, dynamic> toJson() => {
     "id": id,
     "name": name,
