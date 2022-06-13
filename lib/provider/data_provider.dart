@@ -9,7 +9,7 @@ class DataProvider extends ChangeNotifier {
   String? query;
   String? id;
 
-  DataProvider(this.id, this.query, {required this.service}) {
+  DataProvider({this.id, this.query, required this.service}) {
     if (id != null) {
       _fetchDetail(id!);
     } else if (query != null) {
@@ -39,31 +39,23 @@ class DataProvider extends ChangeNotifier {
     try {
       _state = ResultState.loading;
 
-      // Fungsi ini akan memberitahukan kepada widget yang
-      // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
       notifyListeners();
       final restaurant = await service.list();
 
       if (restaurant.restaurants.isEmpty) {
         _state = ResultState.noData;
 
-        // Fungsi ini akan memberitahukan kepada widget yang
-        // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
         notifyListeners();
         return _message = 'Empty Data';
       } else {
         _state = ResultState.hasData;
 
-        // Fungsi ini akan memberitahukan kepada widget yang
-        // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
         notifyListeners();
         return _restaurantResult = restaurant;
       }
     } catch (e) {
       _state = ResultState.error;
 
-      // Fungsi ini akan memberitahukan kepada widget yang
-      // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
       notifyListeners();
       return _message = 'Error --> $e';
     }
@@ -73,32 +65,23 @@ class DataProvider extends ChangeNotifier {
     try {
       _state = ResultState.loading;
 
-      // Fungsi ini akan memberitahukan kepada widget yang
-      // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
       notifyListeners();
       final response = await service.search(query);
 
       if ((response.founded == 0) || (response.restaurants.isEmpty)) {
         _state = ResultState.noData;
 
-
-        // Fungsi ini akan memberitahukan kepada widget yang
-        // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
         notifyListeners();
         return _message = 'No Data Available';
       } else {
         _state = ResultState.hasData;
 
-        // Fungsi ini akan memberitahukan kepada widget yang
-        // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
         notifyListeners();
         return _searchResult = response;
       }
     } catch (e) {
       _state = ResultState.error;
 
-      // Fungsi ini akan memberitahukan kepada widget yang
-      // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
       notifyListeners();
       return _message = 'Error --> $e';
     }
@@ -108,24 +91,18 @@ class DataProvider extends ChangeNotifier {
     try {
       _state = ResultState.loading;
 
-      // Fungsi ini akan memberitahukan kepada widget yang
-      // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
       notifyListeners();
       final detail = await service.get(id);
 
       if (detail.error == false) {
         _state = ResultState.hasData;
 
-        // Fungsi ini akan memberitahukan kepada widget yang
-        // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
         notifyListeners();
         return _detailResult = detail;
       }
     } catch (e) {
       _state = ResultState.error;
 
-      // Fungsi ini akan memberitahukan kepada widget yang
-      // menggunakan state ini bahwa terjadi perubahan sehingga harus membangun ulang UI.
       notifyListeners();
       return _message = 'Error --> $e';
     }

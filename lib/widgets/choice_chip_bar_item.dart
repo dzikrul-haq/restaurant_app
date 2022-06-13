@@ -16,7 +16,7 @@ final List<Item> foods = [];
 final List<Item> drinks = [];
 const itemIcon = Icon(Icons.circle, size: 10, color: Color(0xFFD74141));
 
-/// membuat widget text karena item yang diakses adalah sama-sama text.
+
 Widget text(String text) {
   return Text(
     text,
@@ -27,14 +27,12 @@ Widget text(String text) {
   );
 }
 
-/// Membuat daftar chip secara manual.
+
 final chipBarList = <ItemChipBar>[
   ItemChipBar(
     0,
     'Foods',
     Table(
-      // Membagi daftar makanan dengan fungsi
-      // map (ingat kalo map itu membagi berdasarkan key - value pada JSON)
       children: foods
           .map(
             (item) => TableRow(
@@ -57,8 +55,6 @@ final chipBarList = <ItemChipBar>[
     1,
     'Drinks',
     Table(
-      // Membagi daftar minuman dengan fungsi
-      // map (ingat kalo map itu membagi berdasarkan key - value pada JSON)
       children: drinks
           .map(
             (item) => TableRow(

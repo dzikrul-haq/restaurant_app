@@ -1,27 +1,45 @@
 {
+    "code" : "id",
     "titleApp": "Restaurant",
     "@titleApp": {
         "description" : "Deskripsi mengenai variabel titleApp"
     },
-    "title" : "RESTAURANT YOI",
+    "title" : "Restaurants",
     "@title" : {
         "description" : "App Name"
     },
     "loading": "Loading...",
     "error": "Sepertinya ada masalah..",
+    "empty" : "Kosong",
     "back_to_list" : "kembali ke daftar",
     "listPage_recommendation" : "Daftar rekomendasi restoran untuk Anda!",
     "listPage_home" : "Beranda",
     "listPage_search_button" : "Masuk ke pencarian",
     "listPage_Item_favorite_true" : "Jadikan favorit!",
     "listPage_Item_favorite_false" : "Jadikan tidak favorit",
+            "listPage_place_template" : "di {place}",
+            "@listPage_place_template" : {
+                "description": "Template untuk semantik lokasi restoran",
+                "placeholders" : {
+                    "place" : {
+                        "type" : "String"
+                    }
+                }
+            },
+    "favoritePage_title" : "Favorit",
+    "favoriteButton_add" : "Tambahkan sebagai Favorit?",
+    "favoriteButton_remove" : "Hapus dari Favorit?",
+    "favorite_added" : "Ditambahkan sebagai favorit!",
+    "favorite_removed" : "Dihapus dari daftar favorit!",
     "search_something" : "Cari nama restoran",
     "search_undo" : "Batalkan Pencarian",
+    "search_body" : "Mungkin restoran yang kamu inginkan dapat dicari disini...",
+    "search_image_animation" : "gambar interaksi antar 2 wanita",
     "detailPage_description":"Deskripsi",
     "detailPage_menu":"Menu",
-    "item_or_detail_rating" : "Rating {ratingPoint}",
+    "item_or_detail_rating" : "Rating {ratingPoint} dari 5",
     "@item_or_detail_rating" : {
-        "description": "",
+        "description": "Rating sebuah restoran",
         "placeholders" : {
             "ratingPoint" : {
                 "type" : "String"
@@ -37,8 +55,13 @@
     "settingsPage_reminder_deactivated" : "Pengingat dibatalkan!",
     "settingsPage_language" : "Bahasa",
     "settingsPage_ChangeLanguage": "Pengaturan ubah bahasa",
+    "settingsPage_ChangeLanguageButton": "Tombol ubah bahasa",
     "settingsPage_localeItem1" : "Bahasa Indonesia",
     "settingsPage_localeItem2" : "Bahasa Inggris",
-    "settingsPage_darkThemeToggle" : "nyalakan / matikan mode gelap",
-    "settingsPage_reminderToggle" : "nyalakan / matikan mode pengingat"
+    "settingsPage_darkThemeToggle" : "Nyalakan / matikan mode gelap",
+    "settingsPage_darkThemeEnable" : "Tombol nyalakan mode gelap",
+    "settingsPage_darkThemeDisable" : "Tombol matikan mode gelap",
+    "settingsPage_reminderToggle" : "Nyalakan / matikan mode pengingat",
+    "settingsPage_reminderEnable" : "Nyalakan mode pengingat",
+    "settingsPage_reminderDisable" : "Matikan mode pengingat"
 }

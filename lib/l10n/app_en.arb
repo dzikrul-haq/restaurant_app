@@ -1,27 +1,45 @@
 {
+    "code" : "en",
     "titleApp": "Restaurant",
     "@titleApp": {
         "description" : "Description about titleApp variable"
     },
-    "title" : "RESTAURANT YOI",
+    "title" : "Restaurants",
     "@title" : {
         "description" : "App Name"
     },
     "loading": "Loading...",
     "error": "Something went wrong!!",
+    "empty" : "Empty Data",
     "back_to_list" : "back to list",
     "listPage_recommendation" : "Recommendation restaurant for you!",
     "listPage_home" : "Home",
     "listPage_search_button" : "Go to search",
     "listPage_Item_favorite_true" : "Favorite!",
     "listPage_Item_favorite_false" : "Not Favorite this",
+    "listPage_place_template" : "in {place}",
+    "@listPage_place_template" : {
+        "description": "Place of restaurant template",
+        "placeholders" : {
+            "place" : {
+                "type" : "String"
+            }
+        }
+    },
+    "favoritePage_title" : "Favorites",
+    "favoriteButton_add" : "Add as Favorite?",
+    "favoriteButton_remove" : "Remove from Favorite?",
+    "favorite_added" : "Added as Favorite!",
+    "favorite_removed" : "Unlisted from Favorite!",
     "search_something" : "Search name",
     "search_undo" : "Undo Search",
+    "search_image_animation" : "image of interaction between 2 women",
+    "search_body" : "Maybe something you want will found here",
     "detailPage_description":"Description",
     "detailPage_menu":"Menu",
-    "item_or_detail_rating" : "Rating {ratingPoint}",
+    "item_or_detail_rating" : "Rating {ratingPoint} of 5",
     "@item_or_detail_rating" : {
-        "description": "",
+        "description": "Rating of restaurant",
         "placeholders" : {
             "ratingPoint" : {
                 "type" : "String"
@@ -37,8 +55,13 @@
     "settingsPage_reminder_deactivated" : "Reminder Canceled!",
     "settingsPage_language" : "Language",
     "settingsPage_ChangeLanguage": "Change Language Setting",
+    "settingsPage_ChangeLanguageButton": "Change Language Button",
     "settingsPage_localeItem1" : "Indonesian",
     "settingsPage_localeItem2" : "English",
-    "settingsPage_darkThemeToggle" : "on / off Dark Theme",
-    "settingsPage_reminderToggle" : "on / off Reminder"
+    "settingsPage_darkThemeToggle" : "On / off Dark Theme",
+    "settingsPage_darkThemeEnable" : "Turn on dark theme button",
+    "settingsPage_darkThemeDisable" : "Turn off dark theme button",
+    "settingsPage_reminderToggle" : "On / off Reminder",
+    "settingsPage_reminderEnable" : "Turn on reminder button",
+    "settingsPage_reminderDisable" : "Turn off reminder button"
 }
