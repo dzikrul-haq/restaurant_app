@@ -37,6 +37,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
               Color containerColor = isFavorite ? primaryColor : grey;
 
               return InkWell(
+                borderRadius: BorderRadius.circular(2),
                 onTap: () => setState(() {
                   isFavorite = !isFavorite;
                   if (isFavorite) {
@@ -47,15 +48,19 @@ class _FavoriteButtonState extends State<FavoriteButton> {
                     toast(AppLocalizations.of(context)!.favorite_removed);
                   }
                 }),
-                child: Container(
-                    padding: const EdgeInsets.only(right: 4),
-                    margin: const EdgeInsets.all(3),
-                    decoration: BoxDecoration(
-                      color: containerColor,
-                      border: Border.all(width: 0.8, color: grey200),
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    ),
-                    child: iconSprite),
+                child: Tooltip(
+                  message: buttonLabel,
+                  child: Container(
+                      padding: const EdgeInsets.all(3),
+                      margin: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: containerColor,
+                        border: Border.all(width: 0.8, color: grey200),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8)),
+                      ),
+                      child: iconSprite),
+                ),
               );
             }),
       );

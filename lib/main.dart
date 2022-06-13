@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
               );
             },
             debugShowCheckedModeBanner: false,
-            showSemanticsDebugger: true,
+            showSemanticsDebugger: false,
             home: const HomePage(),
             navigatorKey: navigatorKey,
             navigatorObservers: [routeObserver],
