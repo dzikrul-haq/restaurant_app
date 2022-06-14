@@ -4,15 +4,24 @@ import 'package:google_fonts/google_fonts.dart';
 const Color primaryColor = Color(0xFFFFFFFF);
 const Color onPrimaryColor = Colors.black;
 const Color secondaryColor = Color(0xFEEE8744);
+const Color primaryDarkColor = Color(0xFFCCCCCC);
 const Color secondaryLightColor = Color(0xFFE07265);
+const Color secondaryDarkColor = Color(0xFFC4001F);
+const Color red = Color(0xFFD74141);
 const Color primaryTextColor = Color(0xFF3e6ed0);
 const Color secondaryTextColor = Color(0xff000000);
 const Color grey = Color(0xFFBDBDBD);
+const Color grey200 = Color(0xFFBABABA);
 const Color darkGrey = Color(0xFF4B4B4B);
+
+final TextStyle titleStyle = GoogleFonts.poppins(
+    color: red, fontWeight: FontWeight.bold, fontSize: 28);
 
 final TextTheme myTextTheme = TextTheme(
   headline1: GoogleFonts.oxygen(
-      fontSize: 95, fontWeight: FontWeight.w300, letterSpacing: -1.5),
+      fontSize: 95,
+      fontWeight: FontWeight.w300,
+      letterSpacing: -1.5),
   headline2: GoogleFonts.oxygen(
       fontSize: 59, fontWeight: FontWeight.w300, letterSpacing: -0.5),
   headline3: GoogleFonts.oxygen(fontSize: 48, fontWeight: FontWeight.w400),
@@ -66,4 +75,27 @@ ThemeData lightTheme = ThemeData(
     selectedItemColor: secondaryColor,
     unselectedItemColor: Colors.black54,
   ),
+);
+
+ThemeData darkTheme = ThemeData.dark().copyWith(
+  primaryColor: primaryDarkColor,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+  textTheme: myTextTheme,
+  appBarTheme: AppBarTheme(
+    elevation: 0,
+    toolbarTextStyle: myTextTheme.apply(bodyColor: secondaryColor).bodyText2,
+    titleTextStyle: myTextTheme.apply(bodyColor: secondaryColor).headline6,
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: secondaryColor,
+      textStyle: const TextStyle(),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(0),
+        ),
+      ),
+    ),
+  ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: secondaryDarkColor),
 );

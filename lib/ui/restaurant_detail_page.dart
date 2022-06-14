@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/data/model/detail.dart';
 import 'package:restaurant_app/provider/data_provider.dart';
+import 'package:restaurant_app/utils/constants.dart';
 import 'package:restaurant_app/utils/state_enum.dart';
-import 'package:restaurant_app/widget/choice_chip_bar_item.dart';
+import 'package:restaurant_app/widgets/choice_chip_bar_item.dart';
 
-/// [RestaurantDetailPage] merupakan kelas yang diakses apabila user mengklik salah satu
-/// item pada [RestaurantListPage] menampilkan keterangan dan daftar menu yang
-/// dimiliki oleh restoran tersebut
 class RestaurantDetailPage extends StatefulWidget {
-  static const String routeName = '/restaurant_detail_page';
   final String id;
 
   const RestaurantDetailPage({Key? key, required this.id}) : super(key: key);
@@ -22,27 +20,22 @@ class RestaurantDetailPage extends StatefulWidget {
 }
 
 class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
-  static const _url = 'https://restaurant-api.dicoding.dev/images/small';
   var idSelected = 0;
 
   @override
   Widget build(BuildContext context) {
-    // Change notifier berguna untuk mendaftarkan provider yang digunakan
-    // oleh Widget Consumer.
     return ChangeNotifierProvider<DataProvider>(
-      create: (_) => DataProvider(widget.id, null, service: ApiService()),
+      create: (_) => DataProvider(id: widget.id, service: ApiService(Client())),
       child: _renderView(),
     );
   }
 
-  // List Chip untuk membuat tab food dan drinks
   Row listChip(Menus menu) {
     foods.addAll(menu.foods);
     drinks.addAll(menu.drinks);
 
     return Row(
       mainAxisSize: MainAxisSize.max,
-      // Membagi data yang diterima pada JSON.
       children: chipBarList
           .map(
             (item) => Padding(
@@ -58,7 +51,6 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
     );
   }
 
-  // Aksi apabila user mengklik salah satu chip yang tersedia
   Widget _actionButton(BuildContext context, Function() onTap) {
     return Padding(
       padding: const EdgeInsets.only(top: 21, left: 21),
@@ -69,8 +61,6 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
           child: Icon(
             Icons.arrow_back,
             color: Theme.of(context).iconTheme.color,
-            // semantic label memungkinkan user dengan kebutuhan khusus dapat
-            // mengakses aplikasi ini
             semanticLabel: AppLocalizations.of(context)!.back_to_list,
           ),
           decoration: BoxDecoration(
@@ -82,14 +72,10 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
     );
   }
 
-  // Menampilkan data detail restoran
   Widget _renderView() {
-    // Consumer berarti Widget ini mengambil data dari Provider dengan nama
-    // Restaurant Provider yang membawa context
+
     return Consumer<DataProvider>(
-      // Context berarti unit view yang dibawa, state bearti status dari providernya
       builder: (context, state, _) {
-        // Status dari provider yang sedang Loading
         switch (state.state) {
           case ResultState.loading:
             return Scaffold(
@@ -135,16 +121,13 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            // Stack memungkinkan mengatur Widget Secara Vertical
-            // pada sumbu Z (menghadap ke arah pengguna)
             Stack(
               alignment: Alignment.bottomLeft,
               children: <Widget>[
-                // Hero Memungkinkan animasi pergerakan dinamis pada Widget
                 Hero(
                   tag: restaurant.pictureId,
                   child: Image.network(
-                    '$_url/${restaurant.pictureId}',
+                    '$imageUrl/${restaurant.pictureId}',
                     width: double.infinity,
                   ),
                 ),
@@ -159,7 +142,7 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
                 const Positioned(
                   top: 0,
                   right: 0,
-                  child: FavoriteButton(),
+                  child: _FavoriteButton(),
                 ),
                 Container(
                   height: 21,
@@ -266,22 +249,20 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
   }
 }
 
-/// [FavoriteButton] hanya pemanis setidaknya untuk pada submisi kali ini.
-class FavoriteButton extends StatefulWidget {
-  const FavoriteButton({Key? key}) : super(key: key);
+
+class _FavoriteButton extends StatefulWidget {
+  const _FavoriteButton({Key? key}) : super(key: key);
 
   @override
   _FavoriteButtonState createState() => _FavoriteButtonState();
 }
 
-class _FavoriteButtonState extends State<FavoriteButton> {
-  // Membuat status favori
+class _FavoriteButtonState extends State<_FavoriteButton> {
   bool isFavorited = false;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // Mengubah status favorit (cara yang tidak disarankan)
       onTap: () => setState(() {
         isFavorited = !isFavorited;
       }),

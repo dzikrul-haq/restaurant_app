@@ -1,15 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:lottie/lottie.dart';
 import 'package:restaurant_app/common.dart';
 import 'package:restaurant_app/commons/theme.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/data/model/restaurant.dart';
-import 'package:restaurant_app/widget/restaurant_item_widget.dart';
-import 'package:restaurant_app/widget/restaurant_search_widget.dart';
+import 'package:restaurant_app/widgets/restaurant_item_widget.dart';
+import 'package:restaurant_app/widgets/restaurant_search_widget.dart';
 
-/// [SearchPage] is class that called if user interact SearchFeature in
-/// [RestaurantListPage] that used for searching restaurant.
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
 
@@ -23,8 +23,6 @@ class _SearchPageState extends State<SearchPage> {
   String query = '';
   Timer? deBouncer;
 
-  // Debounce untuk menunggu inputan user, jika tidak ada input
-  // lebih dari 1 detik, lakukan akses pencarian melalui callback
   void debounce(
     VoidCallback callback, {
     Duration duration = const Duration(milliseconds: 1000),
@@ -35,8 +33,6 @@ class _SearchPageState extends State<SearchPage> {
     deBouncer = Timer(duration, callback);
   }
 
-  // Fungsi untuk mengakses API untuk mencari data dengan melalui
-  // inputan callback debounce
   void searchRestaurant(String query) async => debounce(() async {
         if (query == "") {
           setState(() {
@@ -44,8 +40,7 @@ class _SearchPageState extends State<SearchPage> {
           });
           return;
         }
-
-        restaurantSearch = ApiService().search(query);
+        restaurantSearch = ApiService(Client()).search(query);
 
         if (!mounted) return;
         setState(() {
@@ -53,37 +48,29 @@ class _SearchPageState extends State<SearchPage> {
         });
       });
 
-  // Widget untuk Search
   Widget buildSearch() => SearchWidget(
         hintText: AppLocalizations.of(context)!.search_something,
         text: query,
         onChanged: searchRestaurant,
       );
 
-  // Widget daftar item pencarian
   Widget _buildQueryItem() {
-    // Menggunakan FutureBuilder karena menunggu output dari API
+    const loading = Center(child: CircularProgressIndicator());
     return FutureBuilder(
-      // Mengakses Future restaurantSearch
       future: restaurantSearch,
       builder: (
         context,
-        // Mirip dengan Provider, AsyncSnapshot adalah callback yang didapat dari Future
         AsyncSnapshot<SearchResult> snapshot,
       ) {
-        // Mendapatkan Status dari snapshot
         var state = snapshot.connectionState;
 
-        // Jika koneksi snapshot dalam keadaan loading / waiting
         if (state == ConnectionState.waiting) {
-          return const Expanded(
-              child: Center(child: CircularProgressIndicator()));
-        }
-        // Jikaa koneksi telah selesai
-        else if (state == ConnectionState.done) {}
-
-        // jika snapshot yang dipanggil mempunyai data
+          return const Expanded(child: loading);
+        } else if (state == ConnectionState.done) {}
         if (snapshot.hasData) {
+          if (snapshot.data!.restaurants.isEmpty) {
+            return emptySearch();
+          }
           return Expanded(
             child: ListView.builder(
               shrinkWrap: true,
@@ -94,9 +81,7 @@ class _SearchPageState extends State<SearchPage> {
               },
             ),
           );
-        }
-        // Jika snapshot yang dipanggil gagal mendapatkan data
-        else if (snapshot.hasError) {
+        } else if (snapshot.hasError) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +100,6 @@ class _SearchPageState extends State<SearchPage> {
           );
         }
 
-        // Bentuk default / Loading dari Snapshot
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -136,11 +120,58 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  Widget emptySearch() {
+    return Expanded(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Semantics(
+              child: LottieBuilder.asset(
+                'assets/empty-list.json',
+                width: 200,
+                height: 200,
+              ),
+              label: AppLocalizations.of(context)!.empty,
+            ),
+            Text(
+              AppLocalizations.of(context)!.empty,
+              style: Theme.of(context).textTheme.bodyText2,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget letsSearch() {
+    return Expanded(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Semantics(
+              child: LottieBuilder.asset(
+                'assets/ux-team.json',
+                width: 200,
+                height: 200,
+              ),
+              label: AppLocalizations.of(context)!.search_image_animation,
+            ),
+            Text(AppLocalizations.of(context)!.search_body),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Restaurants'),
+        title: Text(AppLocalizations.of(context)!.searchPage_title,
+            style: titleStyle),
       ),
       body: SafeArea(
         child: Column(
@@ -148,11 +179,7 @@ class _SearchPageState extends State<SearchPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             buildSearch(),
-            // Fungsi ini namanya ternary mirip seperti if else
-            // tanda (?) merupakan pertanyaan dari kondisi query
-            // setelah tanda tanya merupakan bentuk true dari jawaban
-            // dan setelah (:) merupakan bentuk false dari jawaban.
-            query == "" ? const SizedBox(height: 20) : _buildQueryItem(),
+            query == "" ? letsSearch() : _buildQueryItem(),
           ],
         ),
       ),

@@ -20,13 +20,12 @@ class SearchWidget extends StatefulWidget {
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
-  // Controller untuk mendapatkan data teks dari search
+
   final controller = TextEditingController();
   final FocusNode _focus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
-    // cuma style
     const styleActive = TextStyle();
     const styleHint = TextStyle();
     final style = widget.text.isEmpty ? styleHint : styleActive;
@@ -36,16 +35,12 @@ class _SearchWidgetState extends State<SearchWidget> {
       decoration: const BoxDecoration(),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: TextField(
-        // Mendapatkan data controller
         controller: controller,
-        // Menghias TextField
         decoration: InputDecoration(
-          // Icon di awal TextField
           prefixIcon: Icon(
             Icons.search,
             color: Theme.of(context).iconTheme.color,
           ),
-          // Icon di akhir TextField
           suffixIcon: _focus.hasFocus || widget.text.isNotEmpty
               ? GestureDetector(
             child: Icon(

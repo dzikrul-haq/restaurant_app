@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Widget ini digunakan untuk menampilkan Chips pada [DetailPage]
 class ChipsFilter extends StatefulWidget {
   final List<Filter> filters;
   final int selected;
@@ -24,7 +23,7 @@ class ChipsFilter extends StatefulWidget {
 class _ChipsFilterState extends State<ChipsFilter> {
   var selectedIndex = 0;
 
-  // Build a chip
+
   Widget chipBuilder(context, currentIndex) {
     Filter filter = widget.filters[currentIndex];
     bool active = selectedIndex == currentIndex;
@@ -60,8 +59,6 @@ class _ChipsFilterState extends State<ChipsFilter> {
 
   @override
   void initState() {
-    // When [widget.selected] is defined, check the value and set it as
-    // [selectedIndex]
     if (widget.selected >= 0 && widget.selected < widget.filters.length) {
       selectedIndex = widget.selected;
     }
